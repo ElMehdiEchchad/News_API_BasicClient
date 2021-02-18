@@ -40,10 +40,11 @@
     <!-- Get news -->
     <div class="container"  >
     <main role="main" class="container">
-    <h1 class="mt-5">Get news from API</h1>
+    <h1 class="mt-5">Get all the news from API</h1>
     <p class="lead">See the available news</p>
-    <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="createNews()">Get News</button>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="getNews()">Get News</button>
     </main></div>
+    <p id="get" class="container"></p>
 
     <!--Delete all the news-->
 
@@ -53,9 +54,8 @@
       <p class="lead">You are about to delete all the existing news</p>
       <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="deleteAllNews()">Delete</button>
       </main></div>
-      <div class="container">
-        <p id="delete"></p>
-      </div>
+        <p id="delete" ></p>
+      
 
     <!--Send news-->
 
@@ -65,9 +65,9 @@
         <p class="lead">Submit your news!</p>
       <form action="index.html" type="POST" id="PostForm">
         <label for="title"></label>
-        <input type="text" name="title" id="title" required>
+        <input type="text" name="title" id="title" required placeholder="Title">
         <label for="content"></label>
-        <input type="text" name="content" id="content" required>
+        <input type="text" name="content" id="content" required placeholder="Content">
         <button  class="btn btn-outline-success my-2 my-sm-0" type="submit"  name="submitButton">submit</button>
       </form>
       <script type="text/javascript" src="./js/processing.js">
@@ -78,36 +78,45 @@
      
         </main>
     </div>
+
+    <!-- delete one entry -->
     
     <div class="container">
       <main role="main" class="container">
-      <h1 class="mt-5">Home</h1>
-      <p class="lead">Act on the news API</p>
+      <h1 class="mt-5">Delete an entry of news</h1>
+      <p class="lead">Delete it by id</p>
       
-    <form action="" type="POST">
-      <label for="title"></label>
-      <input type="text" name="title" id="title" required>
-      <label for="content"></label>
-      <input type="text" name="content" id="content" required>
-      <button  class="btn btn-outline-success my-2 my-sm-0"  type="submit" name="submitButton">submit</button>
+    <form action="index.html" type="POST" id="FormDeleteById">
+      <label for="Id"></label>
+      <input type="number" name="idToDelete" id="idToDelete" required placeholder="ID">
+      <button  class="btn btn-outline-success my-2 my-sm-0"  type="submit" name="submitb">submit</button>
     </form>
- 
-  </div>
-  </main>
-  </div>
+    <script type="text/javascript" src="./js/deleteByid.js"></script>
+   </main>
+    </div>
+    <p id="deleteOne"></p>
+   
+    
+  
+  
 
+  <!-- update an existing entry-->
   <div class="container">
     <main role="main" class="container">
-    <h1 class="mt-5">Home</h1>
-    <p class="lead">Act on the news API</p>
+    <h1 class="mt-5">update</h1>
+    <p class="lead">Update an existing entry</p>
     
-  <form action="index.html" id="form" type="POST">
-    <label for="title"></label>
-    <input type="text" name="title" id="title" required>
+  <form action="index.html" id="formOfUpdate" type="POST">
+    <label for="id"></label>
+    <input type="number" name="idToUpdate" id="id" required placeholder="Id of news to update">
+    <label for="Title"></label>
+    <input type="text" name="Title" id="titleToUpdate" required  placeholder="New Title">
     <label for="content"></label>
-    <input type="text" name="content" id="content" required>
+    <input type="text" name="content" id="contentToUpdate" required placeholder="New Content">
     <button  class="btn btn-outline-success my-2 my-sm-0" type="submit"   name="submitButton">submit</button>
   </form>
+  <script src="./js/update.js"></script>
+  
 </div>
 </main>
 </div>
@@ -131,7 +140,7 @@
 
 
 <script>
- function createNews() {
+ function getNews() {
    mainObj={};
     
     fetch('http://localhost:5000/news',{
@@ -140,12 +149,16 @@
     })
     .then(response => response.json())
     .then(function(json) {
+          var para=document.getElementById("get");
             //console.log(json[0].Title);
             mainObj=json;
+           "<div class=\"container\"/>"
             for(let prop in mainObj){
+              para.innerHTML+="<p class=\"container\"> <strong> Title: </strong> "+mainObj[prop].Title +"</p>"+"<p class=\"container\"><strong> Content: </strong>"+ mainObj[prop].Content+"</p> <p class=\"container\"> <strong> id </strong>"+mainObj[prop].id+"</p> </br>";
               console.log(mainObj[prop].Content);
               console.log(mainObj[prop].Title);
-             }           
+             } "</div>"
+                  
              });         
    }
    function deleteAllNews(){
@@ -154,7 +167,10 @@
       method:"DELETE",
       headers:{"content-type":"application/json ; charset=UTF-8"}
     }).then(response=>response.json()).then(json=>console.log(json));
-    document.getElementById("delete").innerHTML="deleting was successful";
+    var deleted=document.getElementById("delete");
+    deleted.style.margin="20px 20px 30px 200px";
+    deleted.innerHTML="Deleted all the news successfully";
+    
    }
  
 </script>
