@@ -13,6 +13,9 @@ document.getElementById("formOfUpdate").addEventListener("submit",e=>{
       .then(res => res.json())
       .then(json => console.log(json));
       console.log("updating API was successful");
+      var toUpdate=document.getElementById("toUpdate");
+      deleted.style.margin= "20px 20px 30px 200px";
+        deleted.innerHTML="Updated successfully";
   
   })
 

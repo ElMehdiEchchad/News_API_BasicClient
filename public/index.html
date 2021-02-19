@@ -72,12 +72,9 @@
       </form>
       <script type="text/javascript" src="./js/processing.js">
       </script>
-      <div >
-        <p id="demo"></p>
-      </div>
-     
         </main>
     </div>
+    <p id="posted"></p>
 
     <!-- delete one entry -->
     
@@ -116,18 +113,36 @@
     <button  class="btn btn-outline-success my-2 my-sm-0" type="submit"   name="submitButton">submit</button>
   </form>
   <script src="./js/update.js"></script>
-  
-</div>
 </main>
 </div>
+<p id="toUpdate" class="container"></p>
+
+
+<!-- getOne-->
+<div class="container">
+  <main role="main" class="container">
+  <h1 class="mt-5">Get news by id</h1>
+  <p class="lead">Get by ID of news</p>
+  
+<form action="index.html" id="getOneNews" type="POST">
+  <label for="id"></label>
+  <input type="number" name="idToUpdate" id="id" required placeholder="Id of news to delete">
+  <button  class="btn btn-outline-success my-2 my-sm-0" id="myBtn"  name="submitButton">submit</button>
+</form>
+<script src="./js/getOne.js"></script>
+</main>
+</div>
+<p id="getOne" class="container"></p>
 
 
 
-    <footer class="footer">
-    <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
-    </div>
-    </footer>
+
+
+
+
+
+
+ 
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

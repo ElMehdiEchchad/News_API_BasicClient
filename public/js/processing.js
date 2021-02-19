@@ -12,9 +12,13 @@ document.getElementById("PostForm").addEventListener("submit",e=>{
     .then(res => res.json())
     .then(json => console.log(json));
     console.log("posting to API was successful");
+    var posted= document.getElementById("posted");
+    posted.style.margin= "20px 20px 30px 200px";
+    posted.innerHTML="Sent successfully";
+
 
 })
-document.getElementById("demo").innerHTML="posting was successful";
+
 
 
 

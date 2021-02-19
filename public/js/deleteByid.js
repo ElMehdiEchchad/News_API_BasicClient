@@ -6,7 +6,9 @@ document.getElementById("FormDeleteById").addEventListener("submit",e=>{
       })
       .then(res => res.json())
       .then(json => console.log(json));
-      //document.getElementById("deleteOne").innerHTML="teest of the thi";
+      var deleted=document.getElementById("deleteOne");
+      deleted.style.margin= "20px 20px 30px 200px";
+    deleted.innerHTML="Check console message";
   })
    
 
